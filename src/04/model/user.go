@@ -34,3 +34,22 @@ func (u User) AddUser2() error {
 	}
 	return nil
 }
+
+func (u User) GetUserById() (*User, error) {
+	sqlStr := "select id, username, password, email from users where id = ?"
+	row := util.Db.QueryRow(sqlStr, u.ID)
+	var id int
+	var username string
+	var password string
+	var email string
+	err := row.Scan(&id, &username, &password, &email)
+	if err != nil {
+		return nil, err
+	}
+	return &User{
+		id,
+		username,
+		password,
+		email,
+	}, nil
+}
