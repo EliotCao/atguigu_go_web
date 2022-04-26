@@ -53,3 +53,29 @@ func (u User) GetUserById() (*User, error) {
 		email,
 	}, nil
 }
+
+func (u User) GetUsers() ([]*User, error) {
+	sqlStr := "select id, username, password, email from users"
+	rows, err := util.Db.Query(sqlStr, u.ID)
+	if err != nil {
+		return nil, err
+	}
+	var users []*User
+	for rows.Next() {
+		var id int
+		var username string
+		var password string
+		var email string
+		err := rows.Scan(&id, &username, &password, &email)
+		if err != nil {
+			return nil, err
+		}
+		users = append(users, &User{
+			id,
+			username,
+			password,
+			email,
+		})
+	}
+	return users, nil
+}
