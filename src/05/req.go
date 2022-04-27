@@ -18,10 +18,12 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	//r.Body.Read(data)
 	//fmt.Fprintln(w, "body ", data)
 
-	err := r.ParseForm()
-	fmt.Println(err)
-	fmt.Fprintln(w, "请求参数", r.Form)
-	fmt.Fprintln(w, "请求参数", r.PostForm)
+	//err := r.ParseForm()
+	//fmt.Println(err)
+	//fmt.Fprintln(w, "请求参数", r.Form)
+	//fmt.Fprintln(w, "请求参数", r.PostForm)
+	fmt.Fprintln(w, "请求参数", r.FormValue("user"))
+	fmt.Fprintln(w, "请求参数", r.PostFormValue("username"))
 }
 
 func main() {
