@@ -40,8 +40,14 @@ func jsonRsp(w http.ResponseWriter, r *http.Request) {
 	w.Write(json)
 }
 
+func location(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Location","https://www.baidu.com")
+	w.WriteHeader(302)
+}
+
 func main() {
-	http.HandleFunc("/", handler)
+	http.HandleFunc("/hello", handler)
 	http.HandleFunc("/json", jsonRsp)
+	http.HandleFunc("/location", location)
 	http.ListenAndServe(":8081", nil)
 }
