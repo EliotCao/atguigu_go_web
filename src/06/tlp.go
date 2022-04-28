@@ -1,13 +1,16 @@
 package main
 
-import "net/http"
+import (
+	"html/template"
+	"net/http"
+)
 
-func template(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Location","https://www.baidu.com")
-	w.WriteHeader(302)
+func testTemplate(w http.ResponseWriter, r *http.Request) {
+	t, _ := template.ParseFiles("C:\\Users\\RZNQGT\\Desktop\\atguigu_go_web\\src\\06\\index.html")
+	t.Execute(w, "Template test")
 }
 
 func main() {
-	http.HandleFunc("/template", template)
+	http.HandleFunc("/template", testTemplate)
 	http.ListenAndServe(":8081", nil)
 }
