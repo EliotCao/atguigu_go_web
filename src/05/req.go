@@ -29,19 +29,19 @@ func handler(w http.ResponseWriter, r *http.Request) {
 }
 
 func jsonRsp(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type","application/json")
+	w.Header().Set("Content-Type", "application/json")
 	user := model.User{
-		ID: 1,
-		Username:"json",
-		Password:"123",
-		Email:"test@go.com",
+		ID:       1,
+		Username: "json",
+		Password: "123",
+		Email:    "test@go.com",
 	}
-	json,_ := json2.Marshal(user)
+	json, _ := json2.Marshal(user)
 	w.Write(json)
 }
 
 func location(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Location","https://www.baidu.com")
+	w.Header().Set("Location", "https://www.baidu.com")
 	w.WriteHeader(302)
 }
 

@@ -28,7 +28,7 @@ func (u User) AddUser() error {
 
 func (u User) AddUser2() error {
 	sqlStr := "insert into users(username, password, email) values(?,?,?)"
-	_, err := util.Db.Exec(sqlStr,"admin", "123456", "123456@qq.com")
+	_, err := util.Db.Exec(sqlStr, "admin", "123456", "123456@qq.com")
 	if err != nil {
 		fmt.Println("prepare错误", err)
 	}

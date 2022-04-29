@@ -6,12 +6,12 @@ import (
 )
 
 var (
-	Db *sql.DB
+	Db  *sql.DB
 	err error
 )
 
 func ini() {
-	Db,err = sql.Open("mysql","root:123456@localhost:3306")
+	Db, err = sql.Open("mysql", "root:123456@localhost:3306")
 	if err != nil {
 		panic(err.Error())
 	}
