@@ -21,5 +21,16 @@ func Login(w http.ResponseWriter, r *http.Request) {
 }
 
 func Register(w http.ResponseWriter, r *http.Request) {
-	
+	username := r.PostFormValue("username")
+	password := r.PostFormValue("password")
+	email := r.PostFormValue("email")
+	user, _ := dao.CheckUsername(username)
+	if user.ID > 0 {
+		t := template.Must(template.ParseFiles("C:\\Users\\RZNQGT\\Desktop\\atguigu_go_web\\src\\07-bookstore\\views\\pages\\user\\regist.html"))
+		t.Execute(w, "")
+	}else {
+		dao.SaveUser(username, password, email)
+		t := template.Must(template.ParseFiles("C:\\Users\\RZNQGT\\Desktop\\atguigu_go_web\\src\\07-bookstore\\views\\pages\\user\\login.html"))
+		t.Execute(w, "")
+	}
 }
