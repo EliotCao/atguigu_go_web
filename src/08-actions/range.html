@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Template Action</title>
+</head>
+<body>
+    {{range .}}
+        遍历到的元素
+        <a href="#">{{.}}</a><br/>
+    {{else}}
+    <a>没有遍历到任何元素</a>
+    {{end}}
+</body>
+</html>
