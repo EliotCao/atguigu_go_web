@@ -19,5 +19,6 @@ func main() {
 	http.HandleFunc("/", indexHandler)
 
 	http.HandleFunc("/login", controller.Login)
+	http.HandleFunc("/checkusername", controller.CheckUsername)
 	http.ListenAndServe(":8081", nil)
 }

@@ -34,3 +34,14 @@ func Register(w http.ResponseWriter, r *http.Request) {
 		t.Execute(w, "")
 	}
 }
+
+//CheckUsername validate username valid by send ajax request
+func CheckUsername(w http.ResponseWriter, r *http.Request)  {
+	username:= r.PostFormValue("username")
+	user, _ := dao.CheckUsername(username)
+	if user.ID > 0 {
+		w.Write([]byte("user already exists"))
+	}else {
+		w.Write([]byte("user valid"))
+	}
+}
