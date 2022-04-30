@@ -27,7 +27,7 @@ func Register(w http.ResponseWriter, r *http.Request) {
 	user, _ := dao.CheckUsername(username)
 	if user.ID > 0 {
 		t := template.Must(template.ParseFiles("C:\\Users\\RZNQGT\\Desktop\\atguigu_go_web\\src\\07-bookstore\\views\\pages\\user\\regist.html"))
-		t.Execute(w, "")
+		t.Execute(w, "user already exists")
 	}else {
 		dao.SaveUser(username, password, email)
 		t := template.Must(template.ParseFiles("C:\\Users\\RZNQGT\\Desktop\\atguigu_go_web\\src\\07-bookstore\\views\\pages\\user\\login.html"))
