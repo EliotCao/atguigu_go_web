@@ -9,5 +9,7 @@
     <div>包含template2的数据</div>
     {{template "template2.html"}}
     <hr/>
+    <div>将template1中的数据传入template2</div>
+    {{template "template2.html" .}}
 </body>
 </html>
