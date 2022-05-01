@@ -44,10 +44,17 @@ func testTemplate(w http.ResponseWriter, r *http.Request) {
 	t.Execute(w, "Template data test")
 }
 
+func testDefine(w http.ResponseWriter, r *http.Request) {
+	t := template.Must(template.ParseFiles("C:\\Users\\RZNQGT\\Desktop\\atguigu_go_web\\src\\08-actions\\define.html"))
+	t.ExecuteTemplate(w, "model", "")
+}
+
 func main() {
 	http.HandleFunc("/testif", testIf)
 	http.HandleFunc("/testrange", testRange)
 	http.HandleFunc("/testwith", testWith)
 	http.HandleFunc("/testtemplate", testTemplate)
+	http.HandleFunc("/testdefine", testDefine)
+
 	http.ListenAndServe(":8081", nil)
 }
