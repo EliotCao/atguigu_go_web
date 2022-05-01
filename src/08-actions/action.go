@@ -49,12 +49,24 @@ func testDefine(w http.ResponseWriter, r *http.Request) {
 	t.ExecuteTemplate(w, "model", "")
 }
 
+func testDefine2(w http.ResponseWriter, r *http.Request) {
+	age := 19
+	var t *template.Template
+	if age > 18 {
+		t = template.Must(template.ParseFiles("C:\\Users\\RZNQGT\\Desktop\\atguigu_go_web\\src\\08-actions\\define2.html", "C:\\Users\\RZNQGT\\Desktop\\atguigu_go_web\\src\\08-actions\\content1.html"))
+	}else {
+		t = template.Must(template.ParseFiles("C:\\Users\\RZNQGT\\Desktop\\atguigu_go_web\\src\\08-actions\\define2.html", "C:\\Users\\RZNQGT\\Desktop\\atguigu_go_web\\src\\08-actions\\content2.html"))
+	}
+	t.ExecuteTemplate(w, "model", "")
+}
+
 func main() {
 	http.HandleFunc("/testif", testIf)
 	http.HandleFunc("/testrange", testRange)
 	http.HandleFunc("/testwith", testWith)
 	http.HandleFunc("/testtemplate", testTemplate)
 	http.HandleFunc("/testdefine", testDefine)
+	http.HandleFunc("/testdefine2", testDefine2)
 
 	http.ListenAndServe(":8081", nil)
 }
