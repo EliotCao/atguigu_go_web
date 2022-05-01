@@ -7,10 +7,10 @@
 </head>
 <body>
     {{template "content"}}
+    <!--块动作-->
+    {{block "content" .}}
+        你年龄是假的吧
+    {{end}}
 </body>
 </html>
-{{end}}
-<!--块动作-->
-{{block "content" .}}
-    你年龄是假的吧
 {{end}}
