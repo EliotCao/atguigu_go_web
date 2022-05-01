@@ -53,7 +53,7 @@ func testDefine2(w http.ResponseWriter, r *http.Request) {
 	age := 19
 	var t *template.Template
 	if age > 18 {
-		t = template.Must(template.ParseFiles("C:\\Users\\RZNQGT\\Desktop\\atguigu_go_web\\src\\08-actions\\define2.html", "C:\\Users\\RZNQGT\\Desktop\\atguigu_go_web\\src\\08-actions\\content1.html"))
+		t = template.Must(template.ParseFiles("C:\\Users\\RZNQGT\\Desktop\\atguigu_go_web\\src\\08-actions\\define2.html"))
 	}else {
 		t = template.Must(template.ParseFiles("C:\\Users\\RZNQGT\\Desktop\\atguigu_go_web\\src\\08-actions\\define2.html", "C:\\Users\\RZNQGT\\Desktop\\atguigu_go_web\\src\\08-actions\\content2.html"))
 	}
