@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Template Action</title>
+</head>
+<body>
+    {{with "太子"}}
+        <div>修改之后的数据是 {{.}}</div>
+    {{end}}
+    <hr/>
+
+    {{with ""}}
+        <div>修改之后的数据是 {{.}}</div>
+    {{else}}
+        <div>传过来的数据是 {{.}}</div>
+    {{end}}
+</body>
+</html>
