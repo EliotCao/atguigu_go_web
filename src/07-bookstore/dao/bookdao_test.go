@@ -15,4 +15,3 @@ func TestGetBooks(t *testing.T) {
 		fmt.Printf("第%v个图书是%v\n", k+1, v)
 	}
 }
-
