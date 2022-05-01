@@ -39,9 +39,15 @@ func testWith(w http.ResponseWriter, r *http.Request) {
 	t.Execute(w, "狸猫")
 }
 
+func testTemplate(w http.ResponseWriter, r *http.Request) {
+	t := template.Must(template.ParseFiles("C:\\Users\\RZNQGT\\Desktop\\atguigu_go_web\\src\\08-actions\\template1.html", "C:\\Users\\RZNQGT\\Desktop\\atguigu_go_web\\src\\08-actions\\template2.html"))
+	t.Execute(w, "Template data test")
+}
+
 func main() {
 	http.HandleFunc("/testif", testIf)
 	http.HandleFunc("/testrange", testRange)
 	http.HandleFunc("/testwith", testWith)
+	http.HandleFunc("/testtemplate", testTemplate)
 	http.ListenAndServe(":8081", nil)
 }
