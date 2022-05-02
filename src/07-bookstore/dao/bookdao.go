@@ -3,6 +3,7 @@ package dao
 import (
 	"atguigu_go_web/src/07-bookstore/model"
 	util "atguigu_go_web/src/07-bookstore/utils"
+	"strconv"
 )
 
 func GetBooks() ([]*model.Book, error) {
@@ -53,4 +54,35 @@ func UpdateBook(book *model.Book) error {
 		return err
 	}
 	return nil
+}
+
+func GetPageBooks(pageNo string) (*model.Page, error) {
+	iPageNo, _ := strconv.ParseInt(pageNo, 10, 64)
+	sqlStr := "select count(*) from books"
+	var totalRecord int64
+	row := util.Db.QueryRow(sqlStr)
+	row.Scan(&totalRecord)
+	var pageSize int64 = 4
+	var totalPageNo int64
+	if totalRecord % pageSize == 0 {
+		totalPageNo = totalRecord / pageSize
+	}else {
+		totalPageNo = totalRecord / pageSize + 1
+	}
+	selStr := "select id,title,author,price,sales,stock,img_path from books limit ?,?"
+	rows, _ := util.Db.Query(selStr, (iPageNo-1)*pageSize, pageSize)
+	var books []*model.Book
+	for rows.Next() {
+		book := &model.Book{}
+		rows.Scan(&book.Id, &book.Title, &book.Author, &book.Price, &book.Sales, &book.Stock)
+		books = append(books, book)
+	}
+	page := &model.Page{
+		books,
+		iPageNo,
+		pageSize,
+		totalPageNo,
+		totalRecord,
+	}
+	return page, nil
 }
