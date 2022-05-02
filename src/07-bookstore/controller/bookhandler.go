@@ -38,4 +38,5 @@ func AddBook(w http.ResponseWriter, r *http.Request) {
 func DeleteBook(w http.ResponseWriter, r *http.Request) {
 	id := r.FormValue("bookId")
 	dao.DeleteBook(id)
+	GetBooks(w,r)
 }
