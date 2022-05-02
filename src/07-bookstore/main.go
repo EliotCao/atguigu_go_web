@@ -22,7 +22,7 @@ func main() {
 	http.HandleFunc("/getbooks", controller.GetBooks)
 	http.HandleFunc("/deletebook", controller.DeleteBook)
 	http.HandleFunc("/updatebookpage", controller.ToUpdateBookPage)
-	http.HandleFunc("/updatebook", controller.UpdateBook)
+	http.HandleFunc("/updateOraddBook", controller.UpdateOrAddBook)
 
 	http.ListenAndServe(":8081", nil)
 }

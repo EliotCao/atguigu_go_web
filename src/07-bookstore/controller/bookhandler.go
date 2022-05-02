@@ -48,7 +48,7 @@ func ToUpdateBookPage(w http.ResponseWriter, r *http.Request) {
 	t.Execute(w, book)
 }
 
-func UpdateBook(w http.ResponseWriter, r *http.Request)  {
+func UpdateOrAddBook(w http.ResponseWriter, r *http.Request)  {
 	bookId := r.PostFormValue("bookId")
 	title := r.PostFormValue("title")
 	author := r.PostFormValue("author")
@@ -68,5 +68,14 @@ func UpdateBook(w http.ResponseWriter, r *http.Request)  {
 		int(iStock),
 		"test.png",
 	}
-	dao.UpdateBook(book)
+	if book.Id > 0 {
+		//在更新图书
+		//调用bookdao中更新图书的函数
+		dao.UpdateBook(book)
+	} else {
+		//在添加图书
+		//调用bookdao中添加图书的函数
+		dao.AddBook(book)
+	}
+	GetBooks(w, r)
 }
