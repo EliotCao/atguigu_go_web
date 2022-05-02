@@ -37,3 +37,11 @@ func DeleteBook(id string) error {
 	}
 	return nil
 }
+
+func GetBookById(bookId string) (*model.Book, error) {
+	sqlStr := "select id,title,author,price,sales,stock,img_path from books where id = ?"
+	row := util.Db.QueryRow(sqlStr, bookId)
+	book := &model.Book{}
+	row.Scan(&book.Id, &book.Title, &book.Author, &book.Price, &book.Sales, &book.Stock)
+	return book, nil
+}

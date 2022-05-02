@@ -40,3 +40,10 @@ func DeleteBook(w http.ResponseWriter, r *http.Request) {
 	dao.DeleteBook(id)
 	GetBooks(w,r)
 }
+
+func ToUpdateBookPage(w http.ResponseWriter, r *http.Request) {
+	bookId := r.FormValue("bookId")
+	book, _ := dao.GetBookById(bookId)
+	t := template.Must(template.ParseFiles("C:\\Users\\RZNQGT\\Desktop\\atguigu_go_web\\src\\07-bookstore\\views\\pages\\manager\\book_modify.html"))
+	t.Execute(w, book)
+}

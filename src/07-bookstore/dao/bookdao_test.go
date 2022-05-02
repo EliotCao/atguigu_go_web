@@ -8,6 +8,7 @@ import (
 
 func TestBook(t *testing.T) {
 	t.Run("book", TestGetBooks)
+	t.Run("", TestGetBookById)
 }
 
 func TestGetBooks(t *testing.T) {
@@ -33,4 +34,9 @@ func TestAddBook(t *testing.T) {
 
 func TestDeleteBook(t *testing.T) {
 	DeleteBook("1")
+}
+
+func TestGetBookById(t *testing.T) {
+	book, _ := GetBookById("32")
+	fmt.Println(book)
 }
