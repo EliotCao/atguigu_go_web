@@ -11,6 +11,7 @@ func TestBook(t *testing.T) {
 	t.Run("", TestAddBook)
 	t.Run("", TestDeleteBook)
 	t.Run("", TestGetBookById)
+	t.Run("GetPageBook", TestGetBooks)
 }
 
 func TestGetBooks(t *testing.T) {
@@ -54,4 +55,9 @@ func TestUpdateBook(t *testing.T) {
 		"test.png",
 	}
 	UpdateBook(book)
+}
+
+func TestGetPageBooks(t *testing.T) {
+	page, _:= GetPageBooks("1")
+	fmt.Println(page)
 }
