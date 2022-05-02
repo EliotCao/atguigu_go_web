@@ -30,3 +30,7 @@ func TestAddBook(t *testing.T) {
 	}
 	AddBook(b)
 }
+
+func TestDeleteBook(t *testing.T) {
+	DeleteBook("1")
+}

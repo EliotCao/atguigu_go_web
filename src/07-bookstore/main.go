@@ -20,6 +20,7 @@ func main() {
 	http.HandleFunc("/login", controller.Login)
 	http.HandleFunc("/checkusername", controller.CheckUsername)
 	http.HandleFunc("/getbooks", controller.GetBooks)
+	http.HandleFunc("/deletebook", controller.DeleteBook)
 
 	http.ListenAndServe(":8081", nil)
 }

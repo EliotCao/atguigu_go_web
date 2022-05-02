@@ -28,3 +28,12 @@ func AddBook(b *model.Book) error {
 	}
 	return nil
 }
+
+func DeleteBook(id string) error {
+	sqlStr := "delete from books where id = ?"
+	_, err := util.Db.Exec(sqlStr, id)
+	if err != nil{
+		return err
+	}
+	return nil
+}
