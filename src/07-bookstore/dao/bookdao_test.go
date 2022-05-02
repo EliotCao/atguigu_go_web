@@ -1,6 +1,7 @@
 package dao
 
 import (
+	"atguigu_go_web/src/07-bookstore/model"
 	"fmt"
 	"testing"
 )
@@ -14,4 +15,18 @@ func TestGetBooks(t *testing.T) {
 	for k, v := range books {
 		fmt.Printf("第%v个图书是%v\n", k+1, v)
 	}
+}
+
+func TestAddBook(t *testing.T) {
+	//title,author,price,sales,stock,img_path
+	b := &model.Book{
+		1,
+		"test",
+		"non",
+		12.3,
+		120,
+		121,
+		"",
+	}
+	AddBook(b)
 }

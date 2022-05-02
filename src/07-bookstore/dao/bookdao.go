@@ -19,3 +19,12 @@ func GetBooks() ([]*model.Book, error) {
 	}
 	return books, nil
 }
+
+func AddBook(b *model.Book) error {
+	sqlStr := "insert into books(title,author,price,sales,stock,img_path) values(?,?,?,?,?,?)"
+	_, err := util.Db.Exec(sqlStr, b.Title, b.Author, b.Price, b.Sales, b.Stock, b.ImagePath)
+	if err != nil {
+		return err
+	}
+	return nil
+}
