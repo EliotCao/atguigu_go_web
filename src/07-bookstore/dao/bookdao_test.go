@@ -8,6 +8,8 @@ import (
 
 func TestBook(t *testing.T) {
 	t.Run("book", TestGetBooks)
+	t.Run("", TestAddBook)
+	t.Run("", TestDeleteBook)
 	t.Run("", TestGetBookById)
 }
 
