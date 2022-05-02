@@ -47,3 +47,26 @@ func ToUpdateBookPage(w http.ResponseWriter, r *http.Request) {
 	t := template.Must(template.ParseFiles("C:\\Users\\RZNQGT\\Desktop\\atguigu_go_web\\src\\07-bookstore\\views\\pages\\manager\\book_modify.html"))
 	t.Execute(w, book)
 }
+
+func UpdateBook(w http.ResponseWriter, r *http.Request)  {
+	bookId := r.PostFormValue("bookId")
+	title := r.PostFormValue("title")
+	author := r.PostFormValue("author")
+	price := r.PostFormValue("price")
+	sales := r.PostFormValue("sales")
+	stock := r.PostFormValue("stock")
+	iBookId, _ := strconv.ParseInt(bookId, 10,0)
+	fPrice, _ := strconv.ParseFloat(price, 64)
+	iSales, _ := strconv.ParseInt(sales, 10,0)
+	iStock, _ := strconv.ParseInt(stock, 10,0)
+	book := &model.Book{
+		int(iBookId),
+		title,
+		author,
+		fPrice,
+		int(iSales),
+		int(iStock),
+		"test.png",
+	}
+	dao.UpdateBook(book)
+}

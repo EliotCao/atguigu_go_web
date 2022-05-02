@@ -42,3 +42,16 @@ func TestGetBookById(t *testing.T) {
 	book, _ := GetBookById("32")
 	fmt.Println(book)
 }
+
+func TestUpdateBook(t *testing.T) {
+	book := &model.Book{
+		32,
+		"shushu",
+		"luo",
+		12,
+		12,
+		123,
+		"test.png",
+	}
+	UpdateBook(book)
+}

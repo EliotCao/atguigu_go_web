@@ -45,3 +45,12 @@ func GetBookById(bookId string) (*model.Book, error) {
 	row.Scan(&book.Id, &book.Title, &book.Author, &book.Price, &book.Sales, &book.Stock)
 	return book, nil
 }
+
+func UpdateBook(book *model.Book) error {
+	sqlStr := "update books set title=?,author=?,price=?,sales=? where id=?"
+	_, err := util.Db.Exec(sqlStr, book.Title, book.Author, book.Price, book.Sales, book.Id)
+	if err != nil {
+		return err
+	}
+	return nil
+}
