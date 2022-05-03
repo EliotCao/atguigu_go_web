@@ -8,7 +8,8 @@ func setCookie(w http.ResponseWriter, r *http.Request) {
 		Value: "admin",
 		HttpOnly: true,
 	}
-	w.Header().Set("Set-cookie", cookie.String())
+	//w.Header().Set("Set-cookie", cookie.String())
+	http.SetCookie(w, &cookie)
 }
 
 func main() {
