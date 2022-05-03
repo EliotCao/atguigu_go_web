@@ -82,6 +82,9 @@ func UpdateOrAddBook(w http.ResponseWriter, r *http.Request)  {
 
 func GetPageBooks(w http.ResponseWriter, r *http.Request) {
 	pageNo := r.PostFormValue("pageNo")
+	if pageNo == ""{
+		pageNo = "1"
+	}
 	page, _ := dao.GetPageBooks(pageNo)
 	t := template.Must(template.ParseFiles("C:\\Users\\RZNQGT\\Desktop\\atguigu_go_web\\src\\07-bookstore\\views\\pages\\manager\\book_manager.html"))
 	t.Execute(w, page)
