@@ -1,6 +1,9 @@
 package main
 
-import "net/http"
+import (
+	"fmt"
+	"net/http"
+)
 
 func setCookie(w http.ResponseWriter, r *http.Request) {
 	cookie := http.Cookie{
@@ -12,7 +15,15 @@ func setCookie(w http.ResponseWriter, r *http.Request) {
 	http.SetCookie(w, &cookie)
 }
 
+func getCookie(w http.ResponseWriter, r *http.Request) {
+	cookie := r.Header["Cookie"]
+	fmt.Println(cookie)
+	cookie2, _ := r.Cookie("user")
+	fmt.Println(cookie2)
+}
+
 func main() {
 	http.HandleFunc("/cookie", setCookie)
+	http.HandleFunc("/getcookie", getCookie)
 	http.ListenAndServe(":8081", nil)
 }
