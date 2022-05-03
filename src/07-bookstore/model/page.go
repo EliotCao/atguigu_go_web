@@ -8,3 +8,19 @@ type Page struct {
 	TotalPageNo int64
 	TotalRecord int64
 }
+
+func (p Page) HasPrev() bool {
+	return p.PageNo > 1
+}
+
+func (p Page) HasNext() bool {
+	return p.PageNo < p.TotalPageNo
+}
+
+func (p Page) GetPrevPageNo() int64 {
+	if p.HasPrev() {
+		return p.PageNo - 1
+	}else {
+		return 1
+	}
+}
