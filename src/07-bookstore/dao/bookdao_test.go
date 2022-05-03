@@ -61,3 +61,8 @@ func TestGetPageBooks(t *testing.T) {
 	page, _:= GetPageBooks("1")
 	fmt.Println(page)
 }
+
+func TestGetPageBooksByPrice(t *testing.T) {
+	page, _:= GetPageBooksByPrice("1", "10", "100")
+	fmt.Println(page)
+}
