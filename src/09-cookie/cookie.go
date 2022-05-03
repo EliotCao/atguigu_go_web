@@ -10,6 +10,7 @@ func setCookie(w http.ResponseWriter, r *http.Request) {
 		Name: "user",
 		Value: "admin",
 		HttpOnly: true,
+		MaxAge: 60,
 	}
 	//w.Header().Set("Set-cookie", cookie.String())
 	http.SetCookie(w, &cookie)
