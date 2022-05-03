@@ -38,7 +38,7 @@ func AddBook(w http.ResponseWriter, r *http.Request) {
 func DeleteBook(w http.ResponseWriter, r *http.Request) {
 	id := r.FormValue("bookId")
 	dao.DeleteBook(id)
-	GetBooks(w,r)
+	GetPageBooks(w,r)
 }
 
 func ToUpdateBookPage(w http.ResponseWriter, r *http.Request) {
@@ -77,5 +77,12 @@ func UpdateOrAddBook(w http.ResponseWriter, r *http.Request)  {
 		//调用bookdao中添加图书的函数
 		dao.AddBook(book)
 	}
-	GetBooks(w, r)
+	GetPageBooks(w, r)
+}
+
+func GetPageBooks(w http.ResponseWriter, r *http.Request) {
+	pageNo := r.PostFormValue("pageNo")
+	page, _ := dao.GetPageBooks(pageNo)
+	t := template.Must(template.ParseFiles("C:\\Users\\RZNQGT\\Desktop\\atguigu_go_web\\src\\07-bookstore\\views\\pages\\manager\\book_manager.html"))
+	t.Execute(w, page)
 }
