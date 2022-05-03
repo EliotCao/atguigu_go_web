@@ -86,3 +86,34 @@ func GetPageBooks(pageNo string) (*model.Page, error) {
 	}
 	return page, nil
 }
+
+func GetPageBooksByPrice(pageNo, minPrice, maxPrice string) (*model.Page, error) {
+	iPageNo, _ := strconv.ParseInt(pageNo, 10, 64)
+	sqlStr := "select count(*) from books where between ? and ?"
+	var totalRecord int64
+	row := util.Db.QueryRow(sqlStr, minPrice, maxPrice)
+	row.Scan(&totalRecord)
+	var pageSize int64 = 4
+	var totalPageNo int64
+	if totalRecord % pageSize == 0 {
+		totalPageNo = totalRecord / pageSize
+	}else {
+		totalPageNo = totalRecord / pageSize + 1
+	}
+	selStr := "select id,title,author,price,sales,stock,img_path from books between ? and ? limit ?,?"
+	rows, _ := util.Db.Query(selStr,minPrice, maxPrice, (iPageNo-1)*pageSize, pageSize)
+	var books []*model.Book
+	for rows.Next() {
+		book := &model.Book{}
+		rows.Scan(&book.Id, &book.Title, &book.Author, &book.Price, &book.Sales, &book.Stock)
+		books = append(books, book)
+	}
+	page := &model.Page{
+		books,
+		iPageNo,
+		pageSize,
+		totalPageNo,
+		totalRecord,
+	}
+	return page, nil
+}

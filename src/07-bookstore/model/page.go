@@ -7,6 +7,8 @@ type Page struct {
 	PageSize    int64
 	TotalPageNo int64
 	TotalRecord int64
+	MinPrice	int64
+	MaxPrice	int64
 }
 
 func (p Page) HasPrev() bool {

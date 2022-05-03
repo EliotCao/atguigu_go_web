@@ -89,3 +89,22 @@ func GetPageBooks(w http.ResponseWriter, r *http.Request) {
 	t := template.Must(template.ParseFiles("C:\\Users\\RZNQGT\\Desktop\\atguigu_go_web\\src\\07-bookstore\\views\\pages\\manager\\book_manager.html"))
 	t.Execute(w, page)
 }
+
+func GetPageBooksByPrice(w http.ResponseWriter, r *http.Request) {
+	pageNo := r.PostFormValue("pageNo")
+	minPrice := r.PostFormValue("minPrice")
+	maxPrice := r.PostFormValue("maxPrice")
+	var page *model.Page
+	if pageNo == ""{
+		pageNo = "1"
+	}
+	if minPrice == "" && maxPrice == "" {
+		page, _ = dao.GetPageBooks(pageNo)
+	}else {
+		page, _ = dao.GetPageBooksByPrice(pageNo, minPrice, maxPrice)
+		page.MinPrice, _ = strconv.ParseInt(minPrice, 10, 64)
+		page.MaxPrice, _ = strconv.ParseInt(minPrice, 10, 64)
+	}
+	t := template.Must(template.ParseFiles("C:\\Users\\RZNQGT\\Desktop\\atguigu_go_web\\src\\07-bookstore\\views\\pages\\manager\\book_manager.html"))
+	t.Execute(w, page)
+}
