@@ -7,8 +7,10 @@ type Page struct {
 	PageSize    int64
 	TotalPageNo int64
 	TotalRecord int64
-	MinPrice	int64
-	MaxPrice	int64
+	MinPrice    int64
+	MaxPrice    int64
+	IsLogin     bool
+	Username    string
 }
 
 func (p Page) HasPrev() bool {
@@ -22,7 +24,7 @@ func (p Page) HasNext() bool {
 func (p Page) GetPrevPageNo() int64 {
 	if p.HasPrev() {
 		return p.PageNo - 1
-	}else {
+	} else {
 		return 1
 	}
 }

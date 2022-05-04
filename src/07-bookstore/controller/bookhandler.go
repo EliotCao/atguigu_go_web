@@ -105,6 +105,15 @@ func GetPageBooksByPrice(w http.ResponseWriter, r *http.Request) {
 		page.MinPrice, _ = strconv.ParseInt(minPrice, 10, 64)
 		page.MaxPrice, _ = strconv.ParseInt(minPrice, 10, 64)
 	}
+	cookie, _ := r.Cookie("Cookie")
+	if cookie != nil {
+		cookieValue := cookie.Value
+		session, _ := dao.GetSession(cookieValue)
+		if session.UserID > 0 {
+			page.IsLogin = true
+			page.Username = session.Username
+		}
+	}
 	t := template.Must(template.ParseFiles("C:\\Users\\RZNQGT\\Desktop\\atguigu_go_web\\src\\07-bookstore\\views\\pages\\manager\\book_manager.html"))
 	t.Execute(w, page)
 }
