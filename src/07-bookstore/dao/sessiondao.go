@@ -6,7 +6,7 @@ import (
 )
 
 func AddSession(s *model.Session) error {
-	sqlStr := "insert into session values(?,?,?)"
+	sqlStr := "insert into sessions values(?,?,?)"
 	_, err := util.Db.Exec(sqlStr, s.SessionID, s.Username, s.UserID)
 	if err != nil {
 		return err
