@@ -2,6 +2,8 @@ package controller
 
 import (
 	"atguigu_go_web/src/07-bookstore/dao"
+	"atguigu_go_web/src/07-bookstore/model"
+	util "atguigu_go_web/src/07-bookstore/utils"
 	"html/template"
 	"net/http"
 )
@@ -12,6 +14,21 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	password := r.PostFormValue("password")
 	user, _ := dao.CheckUsernameAndPassword(username, password)
 	if user.ID > 0 {
+		uuid := util.CreateUUID()
+		session := &model.Session{
+			uuid,
+			user.Username,
+			user.ID,
+		}
+		dao.AddSession(session)
+		cookie := http.Cookie{
+			Name: "uuid",
+			Value: uuid,
+			HttpOnly: true,
+		}
+		//r.Header.Set("Set-Cookie", cookie.String())
+		http.SetCookie(w, &cookie)
+
 		t := template.Must(template.ParseFiles("C:\\Users\\RZNQGT\\Desktop\\atguigu_go_web\\src\\07-bookstore\\views\\pages\\user\\login_success.html"))
 		t.Execute(w, "")
 	}else {
