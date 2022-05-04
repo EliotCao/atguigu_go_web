@@ -17,3 +17,8 @@ func TestAddSession(t *testing.T) {
 	}
 	AddSession(session)
 }
+
+func TestDeleteSession(t *testing.T) {
+	sessionId := "test"
+	DeleteSession(sessionId)
+}
