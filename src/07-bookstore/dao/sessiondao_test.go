@@ -8,6 +8,8 @@ import (
 
 func TestSession(t *testing.T) {
 	t.Run("AddSession", TestAddSession)
+	t.Run("DeleteSession", TestDeleteSession)
+	t.Run("GetSession", TestGetSession)
 }
 
 func TestAddSession(t *testing.T) {
