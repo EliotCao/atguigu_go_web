@@ -22,3 +22,18 @@ func DeleteSession(sid string) error {
 	}
 	return nil
 }
+
+func GetSession(sid string) (*model.Session, error) {
+	sqlStr := "select seesion_id,username,userID from sessions where session_id = ?"
+	inStmt, err := util.Db.Prepare(sqlStr)
+	if err != nil {
+		return nil, err
+	}
+	session := &model.Session{}
+	row := inStmt.QueryRow(sid)
+	row.Scan(&session.SessionID, &session.Username, &session.UserID)
+	if err != nil {
+		return nil, err
+	}
+	return &session,nil
+}
