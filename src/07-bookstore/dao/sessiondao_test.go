@@ -2,6 +2,7 @@ package dao
 
 import (
 	"atguigu_go_web/src/07-bookstore/model"
+	"fmt"
 	"testing"
 )
 
@@ -21,4 +22,9 @@ func TestAddSession(t *testing.T) {
 func TestDeleteSession(t *testing.T) {
 	sessionId := "test"
 	DeleteSession(sessionId)
+}
+
+func TestGetSession(t *testing.T) {
+	session, _ := GetSession("test")
+	fmt.Println(session)
 }

@@ -35,5 +35,5 @@ func GetSession(sid string) (*model.Session, error) {
 	if err != nil {
 		return nil, err
 	}
-	return &session,nil
+	return session,nil
 }
