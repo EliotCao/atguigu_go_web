@@ -37,6 +37,19 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// Logout handle user logout
+func Logout(w http.ResponseWriter, r *http.Request) {
+	cookie, _ := r.Cookie("user")
+	if cookie != nil {
+		cookieValue := cookie.Value
+		dao.DeleteSession(cookieValue)
+		cookie.MaxAge = -1
+		http.SetCookie(w, cookie)
+	}
+	//goto index
+	GetPageBooksByPrice(w, r)
+}
+
 func Register(w http.ResponseWriter, r *http.Request) {
 	username := r.PostFormValue("username")
 	password := r.PostFormValue("password")

@@ -18,6 +18,7 @@ func main() {
 	http.Handle("/pages/", http.StripPrefix("/pages/", http.FileServer(http.Dir("C:\\Users\\RZNQGT\\Desktop\\atguigu_go_web\\src\\07-bookstore\\views\\pages"))))
 	http.HandleFunc("/", indexHandler)
 	http.HandleFunc("/login", controller.Login)
+	http.HandleFunc("/logout", controller.Logout)
 	http.HandleFunc("/checkusername", controller.CheckUsername)
 	http.HandleFunc("/getbooks", controller.GetBooks)
 	http.HandleFunc("/deletebook", controller.DeleteBook)
