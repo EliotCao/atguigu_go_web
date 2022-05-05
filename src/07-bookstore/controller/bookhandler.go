@@ -110,9 +110,13 @@ func GetPageBooksByPrice(w http.ResponseWriter, r *http.Request) {
 		cookieValue := cookie.Value
 		session, _ := dao.GetSession(cookieValue)
 		if session.UserID > 0 {
-			page.IsLogin = true
-			page.Username = session.Username
+
 		}
+	}
+	isLogin, username := dao.IsLogin(r)
+	if isLogin {
+		page.IsLogin = true
+		page.Username = username
 	}
 	t := template.Must(template.ParseFiles("C:\\Users\\RZNQGT\\Desktop\\atguigu_go_web\\src\\07-bookstore\\views\\pages\\manager\\book_manager.html"))
 	t.Execute(w, page)

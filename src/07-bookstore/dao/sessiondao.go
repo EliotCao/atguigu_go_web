@@ -3,6 +3,7 @@ package dao
 import (
 	"atguigu_go_web/src/04/util"
 	"atguigu_go_web/src/07-bookstore/model"
+	"net/http"
 )
 
 func AddSession(s *model.Session) error {
@@ -36,4 +37,16 @@ func GetSession(sid string) (*model.Session, error) {
 		return nil, err
 	}
 	return session,nil
+}
+
+func IsLogin(r *http.Request) (bool, string) {
+	cookie, _ := r.Cookie("user")
+	if cookie != nil {
+		cookieValue := cookie.Value
+		session, _ := GetSession(cookieValue)
+		if session.UserID > 0 {
+			return true, session.Username
+		}
+	}
+	return false, ""
 }
