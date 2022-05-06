@@ -7,7 +7,7 @@ import (
 
 func AddCart(cart *model.Cart) error {
 	sqlStr := "insert into carts(id,total_count,total_amount,user_id) values(?,?,?,?)"
-	_, err := util.Db.Exec(sqlStr, cart.CartID, cart.TotalCount, cart.TotalAmount, cart.UserID)
+	_, err := util.Db.Exec(sqlStr, cart.CartID, cart.GetTotalCount(), cart.GetTotalAmount(), cart.UserID)
 	if err != nil {
 		return err
 	}

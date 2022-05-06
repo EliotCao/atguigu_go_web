@@ -19,7 +19,7 @@ func (c Cart) GetTotalCount() int64 {
 func (c Cart) GetTotalAmount() float64 {
 	var totalAmount float64
 	for _, v := range c.CartItem{
-		totalAmount = totalAmount + v.Amount
+		totalAmount = totalAmount + v.GetAmount()
 	}
 	return totalAmount
 }
