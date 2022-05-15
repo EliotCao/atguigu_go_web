@@ -10,7 +10,7 @@ import (
 
 func GetBooks(w http.ResponseWriter, r *http.Request) {
 	books, _ := dao.GetBooks()
-	t := template.Must(template.ParseFiles("C:\\Users\\RZNQGT\\Desktop\\atguigu_go_web\\src\\07-bookstore\\views\\pages\\manager\\book_manager.html"))
+	t := template.Must(template.ParseFiles("C:\\Users\\Desktop\\atguigu_go_web\\src\\07-bookstore\\views\\pages\\manager\\book_manager.html"))
 	t.Execute(w, books)
 }
 
@@ -44,7 +44,7 @@ func DeleteBook(w http.ResponseWriter, r *http.Request) {
 func ToUpdateBookPage(w http.ResponseWriter, r *http.Request) {
 	bookId := r.FormValue("bookId")
 	book, _ := dao.GetBookById(bookId)
-	t := template.Must(template.ParseFiles("C:\\Users\\RZNQGT\\Desktop\\atguigu_go_web\\src\\07-bookstore\\views\\pages\\manager\\book_modify.html"))
+	t := template.Must(template.ParseFiles("C:\\Users\\Desktop\\atguigu_go_web\\src\\07-bookstore\\views\\pages\\manager\\book_modify.html"))
 	t.Execute(w, book)
 }
 
@@ -86,7 +86,7 @@ func GetPageBooks(w http.ResponseWriter, r *http.Request) {
 		pageNo = "1"
 	}
 	page, _ := dao.GetPageBooks(pageNo)
-	t := template.Must(template.ParseFiles("C:\\Users\\RZNQGT\\Desktop\\atguigu_go_web\\src\\07-bookstore\\views\\pages\\manager\\book_manager.html"))
+	t := template.Must(template.ParseFiles("C:\\Users\\Desktop\\atguigu_go_web\\src\\07-bookstore\\views\\pages\\manager\\book_manager.html"))
 	t.Execute(w, page)
 }
 
@@ -118,6 +118,6 @@ func GetPageBooksByPrice(w http.ResponseWriter, r *http.Request) {
 		page.IsLogin = true
 		page.Username = username
 	}
-	t := template.Must(template.ParseFiles("C:\\Users\\RZNQGT\\Desktop\\atguigu_go_web\\src\\07-bookstore\\views\\pages\\manager\\book_manager.html"))
+	t := template.Must(template.ParseFiles("C:\\Users\\Desktop\\atguigu_go_web\\src\\07-bookstore\\views\\pages\\manager\\book_manager.html"))
 	t.Execute(w, page)
 }
